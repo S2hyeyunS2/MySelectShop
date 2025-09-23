@@ -60,7 +60,6 @@ public class NaverApiService {
             ItemDto itemDto = new ItemDto((JSONObject) item);
             itemDtoList.add(itemDto);
         }
-
         return itemDtoList;
     }
 }
