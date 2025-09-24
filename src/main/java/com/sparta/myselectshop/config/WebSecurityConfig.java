@@ -73,6 +73,8 @@ public class WebSecurityConfig {
                         .loginPage("/api/user/login-page").permitAll()
         );
 
+        // 기본 예외 처리로 원복 (리다이렉트 동작 허용)
+
         // 필터 관리
         http.addFilterBefore(jwtAuthorizationFilter(), JwtAuthenticationFilter.class);
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
