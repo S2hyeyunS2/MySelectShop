@@ -1,5 +1,6 @@
 package com.sparta.myselectshop.service;
 
+import com.sparta.myselectshop.dto.FolderResponseDto;
 import com.sparta.myselectshop.entity.Folder;
 import com.sparta.myselectshop.entity.User;
 import com.sparta.myselectshop.repository.FolderRepository;
@@ -15,10 +16,8 @@ public class FolderService {
 
     private final FolderRepository folderRepository;
 
-    // 로그인한 회원에 폴더들 등록
     public void addFolders(List<String> folderNames, User user) {
 
-        // 입력으로 들어온 폴더 이름을 기준으로, 회원이 이미 생성한 폴더들을 조회합니다.
         List<Folder> existFolderList = folderRepository.findAllByUserAndNameIn(user, folderNames);
 
         List<Folder> folderList = new ArrayList<>();
@@ -43,5 +42,16 @@ public class FolderService {
             }
         }
         return false;
+    }
+
+    public List<FolderResponseDto> getFolders(User user) {
+        List<Folder> folderList = folderRepository.findAllByUser(user);
+        List<FolderResponseDto> responseDtoList = new ArrayList<>();
+
+        for (Folder folder : folderList) {
+            responseDtoList.add(new FolderResponseDto(folder));
+        }
+
+        return responseDtoList;
     }
 }
