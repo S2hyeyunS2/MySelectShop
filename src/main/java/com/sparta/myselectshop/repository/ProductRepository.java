@@ -11,4 +11,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findALlByUser(User user);
     Page<Product> findAllByUser(User user, Pageable pageable);
+    Long countByUser(User user);
 }
